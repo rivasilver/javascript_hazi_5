@@ -1,0 +1,33 @@
+<!-- Hozz létre html dokumentumot és JS kódot, amely az alábbi JavaScript kódot 
+működőképessé teszi:
+let kisskati = new szemely("Kiss","Katalin",28,"");
+kisskati.setHobby("futás");
+document.getElementById("teljesnev").innerHTML = "Teljes neve: " + 
+kisskati.teljesnev();
+document.getElementById("eletkor").innerHTML ="Életkora: " + 
+kisskati.eletkor();
+document.getElementById("hobby").innerHTML = "Kedvenc elfoglaltsága: 
+" + kisskati.getHobby(); -->
+
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Személy</title>
+    <script src="feladat1.js"></script>
+</head>
+<body>
+    <p id="teljesnev"></p>
+    <p id="eletkor"></p>
+    <p id="hobby"></p>
+    <script>
+        let kisskati = new szemely("Kiss","Katalin",28,"");
+        kisskati.setHobby("futás");
+        document.getElementById("teljesnev").innerHTML = "Teljes neve: " + kisskati.teljesnev();
+        document.getElementById("eletkor").innerHTML ="Életkora: " + kisskati.eletkor();
+        document.getElementById("hobby").innerHTML = "Kedvenc elfoglaltsága: " + kisskati.getHobby();
+    </script>
+</body>
+</html>

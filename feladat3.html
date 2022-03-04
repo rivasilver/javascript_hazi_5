@@ -10,6 +10,9 @@ g.) Plusz feladat: A kategória select segítségével legyen kiválasztható.
 h.) Plusz feladat – F és G feladathoz: Legyen lehetőség új kategória és összetevő 
 hozzáadásához -->
 
+<!-- próbálkoztam a plusz feladattal, de a checkboxos nem sikerült - itt hagyom
+ a próbát, hogy lássa a tanár úr -->
+
 <!DOCTYPE html>
 <html lang="hu">
 <head>
@@ -73,6 +76,7 @@ hozzáadásához -->
             let kategoria = document.getElementById("kategoria").value;
             let osszetevok = document.getElementsByName("osszetevok[]").values;
             let osszetevoLista = [];
+            console.log(osszetevok);
             for (let index = 0; index < osszetevok.length; index++) {
                 const element = osszetevok[index];
                 if (element.type == 'checkbox' && element.checked == true) {

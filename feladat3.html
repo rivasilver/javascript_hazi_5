@@ -1,0 +1,97 @@
+<!-- Hozz létre egy étel osztályt.
+a.) Az osztály adattagjai: név, ár, kategória (pl. leves, főétel, pizza, stb.), összetevők.
+b.) Az oldal tegye lehetővé új ételek felvételét, amit egy listába tárolj.
+c.) A felvett ételeket táblázatos formában írd ki.
+d.) Plusz feladat: Az ételeket kategória szerint külön táblázatokba rajzold ki.
+e.) Plusz feladat: Az oldal BootStrap segítségével legyen formázva
+f.) Plusz feladat: Az összetevőket checkboxok segítségével lehessen kiválasztani. Az ételen 
+belül listában legyenek tárolva
+g.) Plusz feladat: A kategória select segítségével legyen kiválasztható.
+h.) Plusz feladat – F és G feladathoz: Legyen lehetőség új kategória és összetevő 
+hozzáadásához -->
+
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Étel</title>
+    <script src="feladat3.js"></script>
+</head>
+<body>
+    <label for="nev">Név:</label>
+    <input type="text" id="nev"><br><br>
+    <label for="ar">Ár:</label>
+    <input type="number" id="ar"><br><br>
+    <label for="kategoria">Kategória:</label>
+    <select name="kategoria" id="kategoria">
+        <option value="leves">Leves</option>
+        <option value="eloetel">Előétel</option>
+        <option value="foetel">Főétel</option>
+        <option value="desszert">Desszert</option>
+    </select> <br><br>
+    <label for="osszetevok[]">Összetevők:</label>
+    <input type="checkbox" name="osszetevok[]" id="teszta" value="teszta">
+    <label for="teszta">tészta</label>
+    <input type="checkbox" name="osszetevok[]" id="hus" value="hus">
+    <label for="hus">hús</label>
+    <input type="checkbox" name="osszetevok[]" id="zoldsegek" value="zoldsegek">
+    <label for="zoldsegek">zöldségek</label>
+    <input type="checkbox" name="osszetevok[]" id="tejtermekek" value="tejtermekek">
+    <label for="tejtermekek">tejtermékek</label>
+    <input type="checkbox" name="osszetevok[]" id="tojas" value="tojas">
+    <label for="tojas">tojás</label>
+    <input type="checkbox" name="osszetevok[]" id="cukor" value="cukor">
+    <label for="cukor">cukor</label>
+    <input type="checkbox" name="osszetevok[]" id="csokolade" value="csokolade">
+    <label for="csokolade">csokoládé</label>
+    <input type="checkbox" name="osszetevok[]" id="vanilia" value="vanilia">
+    <label for="vanilia">vanília</label> <br><br>
+    <button onclick="hozzaad()">Hozzáad</button> <br><br>
+
+    <button onclick="tablazat()">Táblázat megjelenítése</button><br><br>
+    <table>
+        <thead>
+            <tr>
+                <th>Név</th>
+                <th>Ár</th>
+                <th>Kategória</th>
+                <th>Összetevők</th>
+            </tr>
+        </thead>
+        <tbody id="etelek">
+
+        </tbody>
+    </table>
+    <script>
+        var etelek = [];
+
+        function hozzaad(){
+            let nev = document.getElementById("nev").value;
+            let ar = document.getElementById("ar").value;
+            let kategoria = document.getElementById("kategoria").value;
+            let osszetevok = document.getElementsByName("osszetevok[]").values;
+            let osszetevoLista = [];
+            for (let index = 0; index < osszetevok.length; index++) {
+                const element = osszetevok[index];
+                if (element.type == 'checkbox' && element.checked == true) {
+                    osszetevoLista.push(element.value);
+                };
+                console.log(osszetevok[index]);
+            };
+            let etel = new Etel(nev, ar, kategoria, osszetevoLista);
+            etelek.push(etel);
+            console.table(etelek);
+        }
+
+        function tablazat(){
+            let html = "";
+            etelek.forEach(etel => {
+                html += etel.tablazatSor();
+            });
+            document.getElementById('etelek').innerHTML = html;
+        }
+    </script>
+</body>
+</html>
